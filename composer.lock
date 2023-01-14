@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6b12ad75db7c37d10ef753538d87d8df",
+    "content-hash": "22625a6ffaf6f5afaa3eb6f3fce18713",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5668,53 +5668,6 @@
             "time": "2022-12-22T10:31:03+00:00"
         },
         {
-            "name": "themsaid/wink",
-            "version": "1.x-dev",
-            "dist": {
-                "type": "path",
-                "url": "../wink",
-                "reference": "0f71fc56a10e81057ec5a753e38621bad65c1064"
-            },
-            "require": {
-                "laravel/framework": "^7.0||^8.0||^9.0",
-                "php": "^7.3||^7.4||^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "Wink\\WinkServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Wink\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mohamed Said",
-                    "email": "mohamed@laravel.com"
-                }
-            ],
-            "description": "Wink Publishing Framework.",
-            "keywords": [
-                "blog",
-                "framework",
-                "laravel"
-            ],
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "2.2.6",
             "source": {
@@ -8267,9 +8220,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "themsaid/wink": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
