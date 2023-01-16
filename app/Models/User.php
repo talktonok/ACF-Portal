@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -57,8 +58,9 @@ class User extends Authenticatable
         // Maybe you can just hardcode in a user id that you
         //   know is always an admin ID?
 
-        if (       $this->id === 1
-             && $this->email === "admin@mail.com"
+        if (       //$this->id === 1
+             //&& $this->email === "admin@mail.com"
+             Auth::user()->hasAnyRole('admin', 'writter')
            ){
 
            // return true so this user CAN edit/post/delete

@@ -73,9 +73,9 @@
             </div>
         </div>
 
-        @if (config('binshopsblog.search.search_enabled') )
+        <!-- @if (config('binshopsblog.search.search_enabled') )
             @include('binshopsblog::sitewide.search_form')
-        @endif
+        @endif -->
         <div class="row">
             <div class="col-md-12 text-center">
                 @foreach($lang_list as $lang)
