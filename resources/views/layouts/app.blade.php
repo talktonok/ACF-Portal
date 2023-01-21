@@ -36,9 +36,9 @@
 
     <div class="header-left">
         <a href="{{ url('/') }}" class="logo">
-            <img src="assets/img/logo.png" alt="{{ config('app.name', 'Laravel') }}">
+            <img src="assets/img/logob.png" alt="{{ config('app.name', 'logo') }}">
         </a>
-        <a href="index.html" class="logo logo-small">
+        <a href="#" class="logo logo-small">
             <img src="assets/img/logo-small.png" alt="Logo" width="30" height="30">
         </a>
     </div>
@@ -50,7 +50,7 @@
     </div>
     @endauth
 
-    @if (config('binshopsblog.search.search_enabled') )
+        @if (config('binshopsblog.search.search_enabled') )
             @include('binshopsblog::sitewide.search_form')
         @endif
 
@@ -179,6 +179,7 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
+
                         @else
 
         <li class="nav-item dropdown has-arrow new-user-menus">
@@ -187,7 +188,7 @@
                     <img class="rounded-circle" src="assets/img/profiles/avatar-01.jpg" width="31"
                         alt="Soeng Souy">
                     <div class="user-text">
-                        <h6>Soeng Souy</h6>
+                        <h6>{{ Auth::user()->name }}</h6>
                         <p class="text-muted mb-0">Administrator</p>
                     </div>
                 </span>
@@ -221,11 +222,336 @@
     </ul>
 
 </div>
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav me-auto">
+
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
+
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
+            </div>
+
+            @auth
+            <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">
+                            <span>Main Menu</span>
+                        </li>
+                        <li class="submenu active">
+                            <a href="#"><i class="feather-grid"></i> <span> Dashboard</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="index.html" class="active">Admin Dashboard</a></li>
+                                <li><a href="teacher-dashboard.html">Blog Dashboard</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Administrators</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="students.html">Admin List</a></li>
+                                <li><a href="student-details.html">Admin View</a></li>
+                                <li><a href="add-student.html">Admin Add</a></li>
+                                <li><a href="edit-student.html">Admin Edit</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-users"></i> <span> Members</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="teachers.html">Members List</a></li>
+                                <li><a href="teacher-details.html">Members View</a></li>
+                                <li><a href="add-teacher.html">Members Add</a></li>
+                                <li><a href="edit-teacher.html">Members Edit</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-building"></i> <span> Chapters</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="departments.html">Chapters List</a></li>
+                                <li><a href="add-department.html">Chapters Add</a></li>
+                                <li><a href="edit-department.html">Chapters Edit</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-book-reader"></i> <span>Excos</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="subjects.html">Excos List</a></li>
+                                <li><a href="add-subject.html">Excos Add</a></li>
+                                <li><a href="edit-subject.html">Excos Edit</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-calendar-day"></i> <span> Events</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="invoices.html">Events List</a></li>
+                                <li><a href="add-invoice.html">Add Events</a></li>
+                                <li><a href="edit-invoice.html">Edit Events</a></li>
+                                <li><a href="view-invoice.html">Events Details</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-title">
+                            <span>Management</span>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-file-invoice-dollar"></i> <span> Accounts</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="fees-collections.html">Fees Collection</a></li>
+                                <li><a href="expenses.html">Expenses</a></li>
+                                <li><a href="salary.html">Salary</a></li>
+                                <li><a href="add-fees-collection.html">Add Fees</a></li>
+                                <li><a href="add-expenses.html">Add Expenses</a></li>
+                                <li><a href="add-salary.html">Add Salary</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="holiday.html"><i class="fas fa-holly-berry"></i> <span>Holiday</span></a>
+                        </li>
+                        <li>
+                            <a href="fees.html"><i class="fas fa-comment-dollar"></i> <span>Fees</span></a>
+                        </li>
+                        <li>
+                            <a href="exam.html"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
+                        </li>
+                        <li>
+                            <a href="event.html"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
+                        </li>
+                        <li>
+                            <a href="time-table.html"><i class="fas fa-table"></i> <span>Time Table</span></a>
+                        </li>
+                        <li>
+                            <a href="library.html"><i class="fas fa-book"></i> <span>Library</span></a>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fa fa-newspaper"></i> <span> Blogs</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul>
+                                <li><a href="blog.html">All Blogs</a></li>
+                                <li><a href="add-blog.html">Add Blog</a></li>
+                                <li><a href="edit-blog.html">Edit Blog</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="settings.html"><i class="fas fa-cog"></i> <span>Settings</span></a>
+                        </li>
+                        <li class="menu-title">
+                            <span>Pages</span>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-shield-alt"></i> <span> Authentication </span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="login.html">Login</a></li>
+                                <li><a href="register.html">Register</a></li>
+                                <li><a href="forgot-password.html">Forgot Password</a></li>
+                                <li><a href="error-404.html">Error Page</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="blank-page.html"><i class="fas fa-file"></i> <span>Blank Page</span></a>
+                        </li>
+                        <li class="menu-title">
+                            <span>Others</span>
+                        </li>
+                        <li>
+                            <a href="sports.html"><i class="fas fa-baseball-ball"></i> <span>Sports</span></a>
+                        </li>
+                        <li>
+                            <a href="hostel.html"><i class="fas fa-hotel"></i> <span>Hostel</span></a>
+                        </li>
+                        <li>
+                            <a href="transport.html"><i class="fas fa-bus"></i> <span>Transport</span></a>
+                        </li>
+                        <li class="menu-title">
+                            <span>UI Interface</span>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fab fa-get-pocket"></i> <span>Base UI </span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="alerts.html">Alerts</a></li>
+                                <li><a href="accordions.html">Accordions</a></li>
+                                <li><a href="avatar.html">Avatar</a></li>
+                                <li><a href="badges.html">Badges</a></li>
+                                <li><a href="buttons.html">Buttons</a></li>
+                                <li><a href="buttongroup.html">Button Group</a></li>
+                                <li><a href="breadcrumbs.html">Breadcrumb</a></li>
+                                <li><a href="cards.html">Cards</a></li>
+                                <li><a href="carousel.html">Carousel</a></li>
+                                <li><a href="dropdowns.html">Dropdowns</a></li>
+                                <li><a href="grid.html">Grid</a></li>
+                                <li><a href="images.html">Images</a></li>
+                                <li><a href="lightbox.html">Lightbox</a></li>
+                                <li><a href="media.html">Media</a></li>
+                                <li><a href="modal.html">Modals</a></li>
+                                <li><a href="offcanvas.html">Offcanvas</a></li>
+                                <li><a href="pagination.html">Pagination</a></li>
+                                <li><a href="popover.html">Popover</a></li>
+                                <li><a href="progress.html">Progress Bars</a></li>
+                                <li><a href="placeholders.html">Placeholders</a></li>
+                                <li><a href="rangeslider.html">Range Slider</a></li>
+                                <li><a href="spinners.html">Spinner</a></li>
+                                <li><a href="sweetalerts.html">Sweet Alerts</a></li>
+                                <li><a href="tab.html">Tabs</a></li>
+                                <li><a href="toastr.html">Toasts</a></li>
+                                <li><a href="tooltip.html">Tooltip</a></li>
+                                <li><a href="typography.html">Typography</a></li>
+                                <li><a href="video.html">Video</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i data-feather="box"></i> <span>Elements </span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="ribbon.html">Ribbon</a></li>
+                                <li><a href="clipboard.html">Clipboard</a></li>
+                                <li><a href="drag-drop.html">Drag & Drop</a></li>
+                                <li><a href="rating.html">Rating</a></li>
+                                <li><a href="text-editor.html">Text Editor</a></li>
+                                <li><a href="counter.html">Counter</a></li>
+                                <li><a href="scrollbar.html">Scrollbar</a></li>
+                                <li><a href="notification.html">Notification</a></li>
+                                <li><a href="stickynote.html">Sticky Note</a></li>
+                                <li><a href="timeline.html">Timeline</a></li>
+                                <li><a href="horizontal-timeline.html">Horizontal Timeline</a></li>
+                                <li><a href="form-wizard.html">Form Wizard</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i data-feather="bar-chart-2"></i> <span> Charts </span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="chart-apex.html">Apex Charts</a></li>
+                                <li><a href="chart-js.html">Chart Js</a></li>
+                                <li><a href="chart-morris.html">Morris Charts</a></li>
+                                <li><a href="chart-flot.html">Flot Charts</a></li>
+                                <li><a href="chart-peity.html">Peity Charts</a></li>
+                                <li><a href="chart-c3.html">C3 Charts</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i data-feather="award"></i> <span> Icons </span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="icon-fontawesome.html">Fontawesome Icons</a></li>
+                                <li><a href="icon-feather.html">Feather Icons</a></li>
+                                <li><a href="icon-ionic.html">Ionic Icons</a></li>
+                                <li><a href="icon-material.html">Material Icons</a></li>
+                                <li><a href="icon-pe7.html">Pe7 Icons</a></li>
+                                <li><a href="icon-simpleline.html">Simpleline Icons</a></li>
+                                <li><a href="icon-themify.html">Themify Icons</a></li>
+                                <li><a href="icon-weather.html">Weather Icons</a></li>
+                                <li><a href="icon-typicon.html">Typicon Icons</a></li>
+                                <li><a href="icon-flag.html">Flag Icons</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-columns"></i> <span> Forms </span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="form-basic-inputs.html">Basic Inputs </a></li>
+                                <li><a href="form-input-groups.html">Input Groups </a></li>
+                                <li><a href="form-horizontal.html">Horizontal Form </a></li>
+                                <li><a href="form-vertical.html"> Vertical Form </a></li>
+                                <li><a href="form-mask.html"> Form Mask </a></li>
+                                <li><a href="form-validation.html"> Form Validation </a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><i class="fas fa-table"></i> <span> Tables </span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a href="tables-basic.html">Basic Tables </a></li>
+                                <li><a href="data-tables.html">Data Table </a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);"><i class="fas fa-code"></i> <span>Multi Level</span> <span
+                                    class="menu-arrow"></span></a>
+                            <ul>
+                                <li class="submenu">
+                                    <a href="javascript:void(0);"> <span>Level 1</span> <span
+                                            class="menu-arrow"></span></a>
+                                    <ul>
+                                        <li><a href="javascript:void(0);"><span>Level 2</span></a></li>
+                                        <li class="submenu">
+                                            <a href="javascript:void(0);"> <span> Level 2</span> <span
+                                                    class="menu-arrow"></span></a>
+                                            <ul>
+                                                <li><a href="javascript:void(0);">Level 3</a></li>
+                                                <li><a href="javascript:void(0);">Level 3</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="javascript:void(0);"> <span>Level 2</span></a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);"> <span>Level 1</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        @endauth
+        </nav>
+
+
     <div class="page-wrapper">
             <div class="content container-fluid">
-            <main class="py-4">
             @yield('content')
-        </main>
     </div>
 
 </div>
