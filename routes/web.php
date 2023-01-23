@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +29,20 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/dashboard/members', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/dashboard/chapters', [App\Http\Controllers\DashboardController::class, 'chapters'])->name('chapters');
+
+Auth::routes();
+
+Route::get('/dashboard/events', [App\Http\Controllers\DashboardController::class, 'events'])->name('events');
+
+Auth::routes();
+
+Route::get('/dashboard/excos', [App\Http\Controllers\DashboardController::class, 'excos'])->name('excos');
+
+
+Auth::routes();
+
+Route::get('/dashboard/members', [DashboardController::class, 'members'])->name('users');
