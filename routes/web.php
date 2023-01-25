@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,3 +48,11 @@ Route::get('/dashboard/excos', [App\Http\Controllers\DashboardController::class,
 Auth::routes();
 
 Route::get('/dashboard/members', [DashboardController::class, 'members'])->name('users');
+
+Auth::routes();
+
+Route::get('/dashboard/members/add', [DashboardController::class, 'addMember'])->name('members');
+
+Auth::routes();
+
+Route::post('/dashboard/members/add', [UserController::class, 'addUser'])->name('members');

@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
     use HasFactory;
+
+    public function chapter(){
+        return $this->belongsTo(Chapter::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

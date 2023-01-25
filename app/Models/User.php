@@ -20,9 +20,21 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+            'title',
+            'firstName',
+            'lasstName',
+            'otherName',
+            'membershipID',
+            'email',
+            'phone',
+            'dob',
+            'gender',
+            'religion',
+            'chapter_id',
+            'address',
+            'imageURL',
+            'password',
+
     ];
 
     /**
@@ -73,5 +85,9 @@ class User extends Authenticatable
         // to the admin panel (but can still view posts)
 
         return false;
+    }
+
+    public function chapter(){
+        return $this->belongsTo(Chapter::class);
     }
 }

@@ -29,4 +29,9 @@ class DashboardController extends Controller
     {
         return view('dashboard.events');
     }
+
+    public function addMember()
+    {
+        return view('dashboard.addUser');
+    }
 }
