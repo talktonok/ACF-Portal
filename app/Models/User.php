@@ -19,10 +19,11 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
     protected $fillable = [
             'title',
             'firstName',
-            'lasstName',
+            'lastName',
             'otherName',
             'membershipID',
             'email',
@@ -87,7 +88,7 @@ class User extends Authenticatable
         return false;
     }
 
-    public function chapter(){
-        return $this->belongsTo(Chapter::class);
-    }
+    // public function chapter(){
+    //     return $this->belongsTo(Chapter::class);
+    // }
 }

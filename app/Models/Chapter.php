@@ -9,9 +9,9 @@ class Chapter extends Model
 {
     use HasFactory;
     
-    public function user(){
-        return $this->hasMany(User::class);
-    }
+    // public function user(){
+    //     return $this->hasMany(User::class);
+    // }
 
     public function event(){
         return $this->hasMany(Event::class);

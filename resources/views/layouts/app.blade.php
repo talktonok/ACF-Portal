@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/icons/flags/flags.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/all.min.css') }}">
 
@@ -22,9 +23,8 @@
 
     
 
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('assets/plugins/fullcalendar/fullcalendar.min.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('assets/plugins/fullcalendar/fullcalendar.min.css') }}"> -->
 
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -191,7 +191,7 @@
                             <span class="user-img">
                                 <img class="rounded-circle" src="{{asset ('assets/img/profiles/avatar-01.jpg') }}" width="31" alt="Soeng Souy">
                                 <div class="user-text">
-                                    <h6>{{ Auth::user()->name }}</h6>
+                                    <h6>{{ Auth::user()->firstName }}</h6>
                                     <p class="text-muted mb-0">Administrator</p>
                                 </div>
                             </span>
@@ -199,10 +199,10 @@
                         <div class="dropdown-menu">
                             <div class="user-header">
                                 <div class="avatar avatar-sm">
-                                    <img src="{{asset ('assets/img/profiles/avatar-01.jpg') }}" alt="User Image" class="avatar-img rounded-circle">
+                                    <img src="{{asset ('assets/img/profiles/avatar-01.jpg') }}" al t="User Image" class="avatar-img rounded-circle">
                                 </div>
                                 <div class="user-text">
-                                    <h6>{{ Auth::user()->name }}</h6>
+                                    <h6>{{ Auth::user()->firstName }}</h6>
                                     <p class="text-muted mb-0">Administrator</p>
                                 </div>
                             </div>
@@ -256,7 +256,7 @@
                             @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->firstName }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -300,7 +300,7 @@
                                 <li class="submenu">
                                     <a href="#"><i class="fas fa-users"></i> <span> Members</span> <span class="menu-arrow"></span></a>
                                     <ul>
-                                        <li><a href="{{ url('/dashboard/members') }}">List</a></li>
+                                        <li><a href="{{ url('/dashboard/members/add') }}">List</a></li>
                                         <li><a href="{{ url('/dashboard/members/add') }}">Add</a></li>
                                     </ul>
                                 </li>
@@ -364,7 +364,7 @@
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/feather.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
-    <!-- <script src="{{ asset('assets/plugins/apexchart/apexcharts.min.js') }}"></script> -->
+    <script src="{{ asset('assets/plugins/apexchart/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/apexchart/chart-data.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>

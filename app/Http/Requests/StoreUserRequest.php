@@ -13,7 +13,7 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +25,7 @@ class StoreUserRequest extends FormRequest
     {
         return [
             //
-            'title'  => 'required',
+            //'title'  => 'required',
             'firstName' => 'required',
             'lasstName' => 'required',
             'otherName' => 'required',
@@ -35,7 +35,7 @@ class StoreUserRequest extends FormRequest
             'dob' => 'required',
             'gender' => 'required',
             'religion' => 'required',
-            'chapter' => 'required',
+            'chapter_id' => 'required',
             'address' => 'required',
             'imageURL' => 'required',
             'password' => 'required',

@@ -20,6 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -51,8 +52,9 @@ Route::get('/dashboard/members', [DashboardController::class, 'members'])->name(
 
 Auth::routes();
 
-Route::get('/dashboard/members/add', [DashboardController::class, 'addMember'])->name('members');
+Route::get('/dashboard/members/add', [DashboardController::class, 'addMember'])->name('addMember');
+Route::post('/dashboard/members/add', [UserController::class, 'addUser']);
 
-Auth::routes();
 
-Route::post('/dashboard/members/add', [UserController::class, 'addUser'])->name('members');
+
+

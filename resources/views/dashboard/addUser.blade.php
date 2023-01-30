@@ -4,12 +4,21 @@
     <div class="col-sm-12">
         <div class="card comman-shadow">
             <div class="card-body">
-                <form method="POST" action="/dashboard/members/add">
+                <form method="POST" action="{{url('/dashboard/add')}}" enctype="multipart/form-data">
     @csrf
                     <div class="row">
                         <div class="col-12">
                             <h5 class="form-title student-info">Members Information <span><a href="javascript:;"><i class="feather-more-vertical"></i></a></span></h5>
                         </div>
+                        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                         <div class="col-12 col-sm-4">
                             <div class="form-group local-forms">
                                 <label>First Name <span class="login-danger">*</span></label>
@@ -19,7 +28,7 @@
                         <div class="col-12 col-sm-4">
                             <div class="form-group local-forms">
                                 <label>Last Name <span class="login-danger">*</span></label>
-                                <input class="form-control" name="lasstName" type="text" placeholder="Enter Last Name">
+                                <input class="form-control" name="lastName" type="text" placeholder="Enter Last Name">
                             </div>
                         </div>
                         <div class="col-12 col-sm-4">
