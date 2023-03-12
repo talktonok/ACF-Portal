@@ -40,4 +40,8 @@
                         </div>
                     </div>
                 </div>
+
+                
+    <script src="{{ asset('assets/plugins/fullcalendar/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/fullcalendar/jquery.fullcalendar.js') }}"></script>
 @endsection

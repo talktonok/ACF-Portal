@@ -4,7 +4,7 @@
     <div class="col-sm-12">
         <div class="card comman-shadow">
             <div class="card-body">
-                <form method="POST" action="{{url('/dashboard/add')}}" enctype="multipart/form-data">
+                <form method="POST" action="{{url('/dashboard/members/add')}}" enctype="multipart/form-data">
     @csrf
                     <div class="row">
                         <div class="col-12">
@@ -20,28 +20,33 @@
     </div>
 @endif
                         <div class="col-12 col-sm-4">
+                            
                             <div class="form-group local-forms">
                                 <label>First Name <span class="login-danger">*</span></label>
-                                <input class="form-control" name="firstName" type="text" placeholder="Enter First Name">
+                                <input class="form-control" name="firstName" type="text" @isset($users) value="{{$users->firstName}}" @else placeholder="Enter First Name" @endisset>
                             </div>
+                            
                         </div>
                         <div class="col-12 col-sm-4">
                             <div class="form-group local-forms">
                                 <label>Last Name <span class="login-danger">*</span></label>
-                                <input class="form-control" name="lastName" type="text" placeholder="Enter Last Name">
+                                <input class="form-control" name="lastName" type="text" @isset($users) value="{{$users->lastName}}" @else placeholder="Enter Last Name" @endisset>
                             </div>
                         </div>
                         <div class="col-12 col-sm-4">
                             <div class="form-group local-forms">
                                 <label>Other Name <i class="login-danger">optional</i></label>
-                                <input class="form-control" name="otherName" type="text" placeholder="Enter Other Name">
+                                <input class="form-control" name="otherName" type="text" @isset($users) value="{{$users->otherName}}" @else placeholder="Enter Other Name" @endisset>
                             </div>
                         </div>
                         <div class="col-12 col-sm-4">
                             <div class="form-group local-forms">
                                 <label>Gender <span class="login-danger">*</span></label>
                                 <select name="gender" class="form-control select">
-                                    <option>Select Gender</option>
+                                    <option>
+                                    @isset($users) {{$users->gender}} @else Select Gender
+                                    @endisset
+                                </option>
                                     <option>Female</option>
                                     <option>Male</option>
                                     <option>Others</option>
@@ -51,14 +56,20 @@
                         <div class="col-12 col-sm-4">
                             <div class="form-group local-forms calendar-icon">
                                 <label>Date Of Birth <span class="login-danger">*</span></label>
-                                <input class="form-control datetimepicker" name="dob" type="text" placeholder="DD-MM-YYYY">
+                                <input class="form-control datetimepicker" name="dob" type="text" @isset($users) value="{{$users->dob}}" @else placeholder="DD-MM-YYYY" @endisset>
                             </div>
                         </div>
                         <div class="col-12 col-sm-4">
                             <div class="form-group local-forms">
                                 <label>Role <span class="login-danger">*</span></label>
-                                <select name="role" class="form-control select">
-                                    <option>Please Select Role </option>
+                                <select name="role" class="form-control select"@isset($admin) disabled @endisset>
+                                @isset($admin)
+                                    <option>Admin</option>
+                                     @endisset
+                                     <option>
+                                    @isset($users) {{$users->role}} @else Select Role
+                                    @endisset
+                                </option>
                                     <option>Admin</option>
                                     <option>Member</option>
                                     <option>exco</option>
@@ -69,7 +80,10 @@
                             <div class="form-group local-forms">
                                 <label>Religion <span class="login-danger">*</span></label>
                                 <select name="religion" class="form-control select">
-                                    <option>Please Select Religion </option>
+                                <option>
+                                    @isset($users) {{$users->religion}} @else Select Religion
+                                    @endisset
+                                </option>
                                     <option>Islam</option>
                                     <option>Christian</option>
                                     <option>Others</option>
@@ -79,14 +93,17 @@
                         <div class="col-12 col-sm-4">
                             <div class="form-group local-forms">
                                 <label>E-Mail <span class="login-danger">*</span></label>
-                                <input class="form-control" name="email" type="text" placeholder="Enter Email Address">
+                                <input class="form-control" name="email" type="text" @isset($users) value="{{$users->email}}" @else placeholder="Enter Email Address" @endisset>
                             </div>
                         </div>
                         <div class="col-12 col-sm-4">
                             <div class="form-group local-forms">
                                 <label>Chapter <span class="login-danger">*</span></label>
                                 <select name="chapter_id" class="form-control select">
-                                    <option>Please Select chapter </option>
+                                <option>
+                                    @isset($users) {{$users->chapter}} @else Please Select chapter
+                                    @endisset
+                                </option>
                                     <option value="1">Kaduna</option>
                                     <option value="2">Abuja</option>
                                     <option value="3">Lagos</option>
@@ -96,19 +113,19 @@
                         <div class="col-12 col-sm-4">
                             <div class="form-group local-forms">
                                 <label>Address <span class="login-danger">*</span> </label>
-                                <input class="form-control" name="address" type="text" placeholder="Enter Address">
+                                <input class="form-control" name="address" type="text" @isset($users) value="{{$users->address}}" @else placeholder="Enter Address" @endisset>
                             </div>
                         </div>
                         <div class="col-12 col-sm-4">
                             <div class="form-group local-forms">
                                 <label>Membership ID <span class="login-danger">*</span></label>
-                                <input class="form-control" name="membershipID" type="text" placeholder="Enter Membership ID">
+                                <input class="form-control" name="membershipID" type="text" @isset($users) value="{{$users->membershipID}}" @else placeholder="Enter Membership ID" @endisset>
                             </div>
                         </div>
                         <div class="col-12 col-sm-4">
                             <div class="form-group local-forms">
                                 <label>Phone <span class="login-danger">*</span></label>
-                                <input class="form-control" name="phone" type="text" placeholder="Enter Phone Number">
+                                <input class="form-control" name="phone" type="text" @isset($users) value="{{$users->phone}}" @else placeholder="Enter Phone Number" @endisset>
                             </div>
                         </div>
                         <div class="col-12 col-sm-4">

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RegisteredMail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -32,7 +34,7 @@ class UserController extends Controller
             $religion = $request->religion;
             $role = strtolower($request->role);
 
-        $user = User::create([
+        $user = User::updateOrCreate([
             'title'  => $request->title,
             'firstName' => $request->firstName,
             'lastName' => $request->lastName,
@@ -48,9 +50,12 @@ class UserController extends Controller
             'address' => $request->address,
             'imageURL' => $request->image,
             'password' => Hash::make($request->firstName),
-        ])->save();
+        ]);
+        
         if($user){
             $user->assignRole($role);
+            Mail::to($user->email)
+                         ->send(new RegisteredMail($user));
             return view('dashboard.addUser');//response()->json($user, 200);//
         }else{
             return response()->json(["message" => "record not stored"], 404);

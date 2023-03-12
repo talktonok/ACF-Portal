@@ -1,10 +1,11 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateChaptersTable extends Migration
+class CreatePaidDuesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +14,10 @@ class CreateChaptersTable extends Migration
      */
     public function up()
     {
-        Schema::create('chapters', function (Blueprint $table) {
+        Schema::create('paid_dues', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('state')->nullable();
-            $table->string('address')->nullable();
-            $table->string('status')->default('unactive');
+            $table->string('amount');
+            $table->foreignIdFor(User::class);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateChaptersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chapters');
+        Schema::dropIfExists('paid_dues');
     }
 }

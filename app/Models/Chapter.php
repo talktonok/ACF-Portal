@@ -12,6 +12,13 @@ class Chapter extends Model
     // public function user(){
     //     return $this->hasMany(User::class);
     // }
+    protected $fillable = [
+        'name',
+        'state',
+        'status',
+        'address',
+         
+    ];
 
     public function event(){
         return $this->hasMany(Event::class);

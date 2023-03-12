@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
@@ -36,6 +37,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/dashboard/chapters', [App\Http\Controllers\DashboardController::class, 'chapters'])->name('chapters');
+Route::get('/dashboard/chapters/add', [App\Http\Controllers\DashboardController::class, 'addChapters'])->name('addChapters');
+Route::post('/dashboard/chapters/add', [ChapterController::class, 'addChapter'])->name('addChapters');
 
 Auth::routes();
 
@@ -54,6 +57,13 @@ Auth::routes();
 
 Route::get('/dashboard/members/add', [DashboardController::class, 'addMember'])->name('addMember');
 Route::post('/dashboard/members/add', [UserController::class, 'addUser']);
+Route::get('/dashboard/members', [DashboardController::class, 'getAllMemebers'])->name('member');
+Route::get('/dashboard/members/edit/{id}', [DashboardController::class, 'getMember'])->name('member');
+
+Route::get('/dashboard/admins/', [DashboardController::class, 'getAllAdmin'])->name('admins');
+Route::get('/dashboard/admins/add', [DashboardController::class, 'addAdmin']);
+Route::get('/dashboard/admins/edit/{id}', [DashboardController::class, 'getAdmin']);
+Route::post('/dashboard/admins/add', [UserController::class, 'addUser']);
 
 
 

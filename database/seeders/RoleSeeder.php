@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -48,5 +50,24 @@ class RoleSeeder extends Seeder
 
         $super = Role::create(['name' => 'super-admin']);
         $super->givePermissionTo(Permission::all());
+
+        $user = User::create([
+            'title'  => 'Mr',
+            'firstName' => 'Mansur',
+            'lastName' => 'Ibrahim',
+            'otherName' => 'Nok',
+            'membershipID' => '',
+            'email' => 'admin@mail.com',
+            'phone' => '08161939418',
+            'dob' => '',
+            'chapter' => 'Kaduna',
+            'gender' => 'Male',
+            'religion' => 'Islam',
+            'chapter' => '1',
+            'address' => 'Barnawa Kaduna',
+            'imageURL' => '',
+            'password' => Hash::make('123456789'),
+        ]);
+        $user->assignRole('writer', 'admin', 'member', 'exco');
     }
 }
