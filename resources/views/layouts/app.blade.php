@@ -48,10 +48,10 @@
 
             <div class="header-left">
                 <a href="{{ url('/home') }}" class="logo">
-                    <img src="assets/img/logob.png" alt="{{ config('app.name', 'logo') }}">
+                    <img src="{{ asset('assets/img/logo.png')}}" alt="{{ config('app.name', 'logo') }}">
                 </a>
                 <a href="#" class="logo logo-small">
-                    <img src="assets/img/logo-small.png" alt="Logo" width="30" height="30">
+                    <img src="{{ asset('assets/img/logo.png')}}" alt="Logo" width="30" height="30">
                 </a>
             </div>
             @auth
@@ -344,12 +344,12 @@
             @endauth
         </nav>
 
-        
+
         <div class="page-wrapper">
             <div class="content container-fluid">
                 <div class="page-header">
                     <div class="row">
-                    @auth
+                        @auth
                         <div class="col-sm-12">
                             <div class="page-sub-header">
                                 <h3 class="page-title">Welcome Admin!</h3>

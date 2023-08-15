@@ -17,6 +17,7 @@ class CreatePaidDuesTable extends Migration
         Schema::create('paid_dues', function (Blueprint $table) {
             $table->id();
             $table->string('amount');
+            $table->string('payment_id');
             $table->foreignIdFor(User::class);
             $table->timestamps();
         });
