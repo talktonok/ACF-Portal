@@ -37,7 +37,7 @@ class UserController extends Controller
 
             $attributes = [
                 'title'  => $request->title,
-                'firstName' => $request->firstName,
+                'name' => $request->firstName,
                 'lastName' => $request->lastName,
                 'otherName' => $request->otherName,
                 'membershipID' => $request->membershipID,

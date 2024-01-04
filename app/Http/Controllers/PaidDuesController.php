@@ -14,7 +14,8 @@ class PaidDuesController extends Controller
      */
     public function index()
     {
-        //
+        $paidDues = PaidDues::all();
+        return response()->json($paidDues);
     }
 
     /**
@@ -35,7 +36,8 @@ class PaidDuesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $paidDue = PaidDues::create($request->all());
+        return response()->json($paidDue, 201);
     }
 
     /**
@@ -44,9 +46,10 @@ class PaidDuesController extends Controller
      * @param  \App\Models\PaidDues  $paidDues
      * @return \Illuminate\Http\Response
      */
-    public function show(PaidDues $paidDues)
+    public function show($id)
     {
-        //
+        $paidDue = PaidDues::findOrFail($id);
+        return response()->json($paidDue);
     }
 
     /**
@@ -67,9 +70,11 @@ class PaidDuesController extends Controller
      * @param  \App\Models\PaidDues  $paidDues
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PaidDues $paidDues)
+    public function update(Request $request, $id)
     {
-        //
+        $paidDue = PaidDues::findOrFail($id);
+        $paidDue->update($request->all());
+        return response()->json($paidDue, 200);
     }
 
     /**
@@ -78,8 +83,10 @@ class PaidDuesController extends Controller
      * @param  \App\Models\PaidDues  $paidDues
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PaidDues $paidDues)
+    public function destroy($id)
     {
-        //
+        $paidDue = PaidDues::findOrFail($id);
+        $paidDue->delete();
+        return response()->json(null, 204);
     }
 }

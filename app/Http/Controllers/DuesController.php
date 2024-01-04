@@ -14,7 +14,8 @@ class DuesController extends Controller
      */
     public function index()
     {
-        //
+        $dues = Dues::all();
+        return response()->json($dues);
     }
 
     /**
@@ -35,7 +36,8 @@ class DuesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $due = Dues::create($request->all());
+        return response()->json($due, 201);
     }
 
     /**
@@ -44,9 +46,10 @@ class DuesController extends Controller
      * @param  \App\Models\Dues  $dues
      * @return \Illuminate\Http\Response
      */
-    public function show(Dues $dues)
+    public function show($id)
     {
-        //
+        $due = Dues::findOrFail($id);
+        return response()->json($due);
     }
 
     /**
@@ -67,9 +70,11 @@ class DuesController extends Controller
      * @param  \App\Models\Dues  $dues
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dues $dues)
+    public function update(Request $request, $id)
     {
-        //
+        $due = Dues::findOrFail($id);
+        $due->update($request->all());
+        return response()->json($due, 200);
     }
 
     /**
@@ -78,8 +83,10 @@ class DuesController extends Controller
      * @param  \App\Models\Dues  $dues
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dues $dues)
+    public function destroy($id)
     {
-        //
+        $due = Dues::findOrFail($id);
+        $due->delete();
+        return response()->json(null, 204);
     }
 }

@@ -14,7 +14,8 @@ class DonationController extends Controller
      */
     public function index()
     {
-        //
+        $donations = Donation::all();
+        return response()->json($donations);
     }
 
     /**
@@ -35,7 +36,8 @@ class DonationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $donation = Donation::create($request->all());
+        return response()->json($donation, 201);
     }
 
     /**
@@ -44,9 +46,10 @@ class DonationController extends Controller
      * @param  \App\Models\Donation  $donation
      * @return \Illuminate\Http\Response
      */
-    public function show(Donation $donation)
+    public function show($id)
     {
-        //
+        $donation = Donation::findOrFail($id);
+        return response()->json($donation);
     }
 
     /**
@@ -67,9 +70,11 @@ class DonationController extends Controller
      * @param  \App\Models\Donation  $donation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Donation $donation)
+    public function update(Request $request, $id)
     {
-        //
+        $donation = Donation::findOrFail($id);
+        $donation->update($request->all());
+        return response()->json($donation, 200);
     }
 
     /**
@@ -78,8 +83,10 @@ class DonationController extends Controller
      * @param  \App\Models\Donation  $donation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Donation $donation)
+    public function destroy($id)
     {
-        //
+        $donation = Donation::findOrFail($id);
+        $donation->delete();
+        return response()->json(null, 204);
     }
 }
